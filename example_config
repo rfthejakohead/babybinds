@@ -1,0 +1,16 @@
+# Example ~/.babybindsrc
+#
+# These lines are comments. Comments are whole lines and start with a #. Because they are whole lines, something like this:
+# 114:echo The lower volume button was pressed! # I am the comment mentioned!
+# ... will not count as a babybindsrc comment, as it will still be passed with the shell command
+#
+# Empty lines, spaces and tabs NOT in the shell command are ignored, so stuff like this can be done:
+    # NESTED COMMENTS!
+# The syntax for keybinds is:
+# <keycode>;<keycode>;<keycode>;<...>:<shell command>
+# (Note that you need at least one keycode, duh, and that a colon indicates the beginning of the shell command associated with the key combination)
+# (... also, key combinations dont have an order, so beware!)
+# Example:
+
+115:amixer -q sset Master 5%+
+# This will raise volume whenever the raise volume multimedia key is pressed on the keyboard, using alsamixer

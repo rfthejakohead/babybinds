@@ -1,0 +1,16 @@
+babybinds is a linux utility that binds keys and key combinations to shell commands. However, it is limited to keyboard keys from the same device and the input device is manually passed to the program (for now)
+
+It works anywhere in linux (tested on Linux Mint 18):
+ - Virtual terminals
+ - X environment
+ - maybe other untested environments (?)
+
+Configuration:
+ - Saved on ~/.babybindsrc
+ - Syntax:
+   - Supports shell-script-like comments (#). However they currently only work if they are a whole line
+   - <key code>;<key code>;<...>:<single-line shell command>
+   - Spaces and tabs ignored, unless part of the shell command
+ - See example_config for, you guessed it, an example .babybindsrc
+
+There is still plenty to do. See the TODO in main.c
