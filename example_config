@@ -7,10 +7,12 @@
 # Empty lines, spaces and tabs NOT in the shell command are ignored, so stuff like this can be done:
     # NESTED COMMENTS!
 # The syntax for keybinds is:
-# <keycode>;<keycode>;<keycode>;<...>:<shell command>
+# <keycode>;<keycode>;<keycode>;<...>:<binary path or name> <argument> <argument> <...>
 # (Note that you need at least one keycode, duh, and that a colon indicates the beginning of the shell command associated with the key combination)
 # (... also, key combinations dont have an order, so beware!)
 # Example:
 
 115:amixer -q sset Master 5%+
 # This will raise volume whenever the raise volume multimedia key is pressed on the keyboard, using alsamixer
+114:echo Hello\ world!\n\   This is a character escape example for babybinds!
+# This will print the above message when volume is lowered. Just showing off the escaping thats all...
