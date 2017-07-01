@@ -17,7 +17,9 @@
 
 /*
  * Commits:
- * #1 (Fixes, error handling, non-blocking shell executes and escape sequences):
+ * #1 (Hotfix):
+ *  - Fixed unordered multi-key combos
+ * #2 (Fixes, error handling, non-blocking shell executes and escape sequences):
  *  - Fixed bad reads not being ignored and exiting
  *  - Babybinds now waits 3 seconds on a bad read to decrease screen litter and aborts on the 10th failed try
  *  - Fixed multi-key keybinds not working if the combo in the config is not ordered from small to big
@@ -35,6 +37,9 @@
  *    > Null characters cannot be escaped due to c-strings being null-terminated (I don't think any OS allows this anyway...)
  *  - Replaced some printf with *put* family to avoid having yourself accidentally hacking your own computer using format string attacks and to speed stuff up
  *    > Some haven't been replaced yet, however (too lazy)
+ * #3 (Hotfix, corrected commit number):
+ *  - Corrected commit numbers
+ *  - Fixed escape sequences not working (poorly tested before this :(, sorry)
  */
 
 //// TODO list:
@@ -507,7 +512,7 @@ void loadConfig(const size_t maxComboSize) {
                 mode = 5;
                 break;
             }
-            else if(mode == 2) {
+            else if(mode == 2 || mode == 3) {
                 // Push data
                 if(!addKeybind(parsedCombos, parsedCombosI, databuf, databufI)) {
                     mode = 5;
@@ -623,6 +628,9 @@ void loadConfig(const size_t maxComboSize) {
                         databuf[databufI - 1] = '\n'; // Escape newline by replacing previous placeholder backslash
                     else
                         databuf[databufI++] = c; // Invalid escape sequence! Treat as a non escape sequence by inserting new char normally
+
+                    // Go back to mode 2
+                    mode = 2;
                 }
             }
         }
